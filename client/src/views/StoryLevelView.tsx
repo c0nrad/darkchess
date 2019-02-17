@@ -9,6 +9,7 @@ import BASE_URL from '../Config';
 import StoryModel from '../models/StoryModel';
 import Game from '../components/Game';
 import HistoryView from './HistoryView';
+import History from '../components/History';
 
 interface StoryLevelProps {
     match: any
@@ -120,11 +121,13 @@ export default class StoryLevelView extends Component<StoryLevelProps, StoryLeve
     render() {
         var gameId = this.state.gameId;
 
-        if (this.state.isGameOver && !this.state.isWhiteWinner) {
+        if (this.state.isGameOver && !this.state.isWhiteWinner && this.state.gameId) {
             return (<div>
                 <h2>You lost...</h2>
                 {/* <p>Review the game! <Link to={historyUrl}>Game Analysis</Link></p> */}
                 <p>Let's try that again: <button onClick={this.startStory.bind(this)}>Retry Level</button></p>
+                <h4>Review Game</h4>
+                <History gameId={this.state.gameId}></History>
             </div>);
         }
 
@@ -133,11 +136,13 @@ export default class StoryLevelView extends Component<StoryLevelProps, StoryLeve
             var historyUrl = `/history/${gameId}/0`
             var nextStoryLevel = `/story/` + (this.state.story.level + 1);
 
-            if (this.state.isWhiteWinner) {
+            if (this.state.isWhiteWinner && this.state.gameId) {
                 return (<div>
                     <h2>You Win!!</h2>
                     {/* <p>Review the game! <Link to={historyUrl}>Game Analysis</Link></p> */}
                     <p>Proceed to next level! <Link to={nextStoryLevel}>Next Level</Link></p>
+                    <h4>Review Game</h4>
+                    <History gameId={this.state.gameId}></History>
                 </div>);
             } 
         } else if (this.state.isGameOver && (parseInt(this.props.match.params.level) == this.state.maxLevels)) {

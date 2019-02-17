@@ -2,7 +2,7 @@
 SERVICE_NAME=darkchess
 PATH_TO_JAR=/opt/darkchess/darkchess-1.0-SNAPSHOT.jar
 PID_PATH_NAME=/opt/darkchess/darkchess-pid
-LOGPATH=/opt/darkchess/logs
+LOGPATH=/opt/darkchess/logs.txt
 case $1 in
     start)
         echo "Starting $SERVICE_NAME ..."

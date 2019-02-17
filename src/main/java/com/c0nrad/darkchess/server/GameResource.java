@@ -99,7 +99,6 @@ public class GameResource {
       return Response.status(400).entity(ex.toString()).type("text/plain").build();
     }
 
-    // Is Bot Move Next?
     if (!g.isGameOver) {
       try {
         GameEngine.ApplyBotMoveToGame(g);

@@ -5,7 +5,7 @@ import {RouteComponentProps, Redirect} from "react-router";
 import { Link} from 'react-router-dom';
 
 export interface TurnSelectorProps {
-    turnCount : string, 
+    turnCount : number, 
     maxTurnCount: number,
     gameId : string
 }
@@ -13,12 +13,15 @@ export interface TurnSelectorProps {
 export default class TurnSelector extends Component<TurnSelectorProps, {}> {
 
     render() {
-        console.log(typeof this.props.turnCount)
+        // that + is necessary..., little dissapointed with TS
+        var next = +this.props.turnCount +1
+        var prev = +this.props.turnCount -1
+
         return (
             <div>
                 <h3>State {this.props.turnCount} / {this.props.maxTurnCount} </h3>
-                <Link to={`/history/${this.props.gameId}/${parseInt(this.props.turnCount)-1}`}>Back</Link>
-                <Link to={`/history/${this.props.gameId}/${parseInt(this.props.turnCount)+1}`}>Forward</Link>
+                <Link to={`/history/${this.props.gameId}/${prev}`}>Back</Link>
+                <Link to={`/history/${this.props.gameId}/${next}`}>Forward</Link>
             </div>
         )
     }
