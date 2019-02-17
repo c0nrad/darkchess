@@ -1,0 +1,24 @@
+version: 0.0
+os: linux
+files:
+  - source: ./target/darkchess-1.0-SNAPSHOT.jar
+    destination: /opt/darkchess
+  - source: ./client/build
+    destination: /opt/darkchess/client/build
+
+hooks:
+
+  ApplicationStop:
+    - location: scripts/ApplicationStop.sh
+      timeout: 300
+      runas: root
+
+  BeforeInstall:
+    - location: scripts/BeforeInstall.sh
+      timeout: 300
+      runas: root
+  
+  ApplicationStart:
+    - location: scripts/StartService.sh
+      timeout: 300
+      runas: root
