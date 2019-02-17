@@ -1,1 +1,1 @@
-if pgrep java; then pkill java; fi
+service darkchess stop
