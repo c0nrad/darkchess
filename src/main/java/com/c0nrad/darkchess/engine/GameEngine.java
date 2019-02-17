@@ -1,26 +1,19 @@
 package com.c0nrad.darkchess.engine;
 
-
-
 import com.c0nrad.darkchess.models.Board;
 import com.c0nrad.darkchess.models.Color;
 import com.c0nrad.darkchess.models.Game;
 import com.c0nrad.darkchess.models.Move;
-import com.c0nrad.darkchess.models.Piece;
-import com.c0nrad.darkchess.models.PieceType;
 import com.c0nrad.darkchess.models.PlayerType;
-import com.c0nrad.darkchess.models.Position;
 import com.c0nrad.darkchess.players.Player;
 import com.c0nrad.darkchess.players.bots.BotManager;
 
-import java.util.ArrayList;
 
 import com.c0nrad.darkchess.engine.ChessEngine;
 import com.c0nrad.darkchess.engine.FogEngine;
 import com.c0nrad.darkchess.exceptions.InvalidBotException;
 import com.c0nrad.darkchess.exceptions.InvalidMoveException;
 import com.c0nrad.darkchess.exceptions.InvalidPositionException;
-import com.c0nrad.darkchess.exceptions.InvalidStateException;
 
 public class GameEngine {
 
@@ -37,14 +30,10 @@ public class GameEngine {
         while (!ChessEngine.IsGameOver(g.board)) {
             Player currentPlayer;
             if (g.turn == Color.WHITE) {
-                System.out.println("Player 1 Turn!");
                 currentPlayer = p1;
             } else {
-                System.out.println("Player 2 Turn!");
                 currentPlayer = p2;
             } 
-
-            System.out.println("The current player is" + currentPlayer.color);
 
             Board fogBoard = FogEngine.GenerateFogBoard(g.board, currentPlayer.color);
 
@@ -64,7 +53,6 @@ public class GameEngine {
             while (true) {
                 Move move = currentPlayer.GetMove(fogBoard);
                 
-                System.out.println("[+] Recieved move from player " + currentPlayer.color +": " + move);
                 try {
                     ChessEngine.AssertIsValidMove(g.board, move, currentPlayer.color);
                     ApplyMoveToGame(g, move);
@@ -77,11 +65,9 @@ public class GameEngine {
         }
 
         if (ChessEngine.IsWhiteWinner(g.board)) {
-            System.out.println("White wins!");
             g.isGameOver = true;
             g.isWhiteWinner = true;
         } else {
-            System.out.println("Black wins!");
             g.isGameOver = true;
             g.isWhiteWinner = false;
         }

@@ -6,7 +6,12 @@ import com.c0nrad.darkchess.models.Color;
 import com.c0nrad.darkchess.models.Game;
 import com.c0nrad.darkchess.models.HistoryView;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class HistoryEngine {
+
+    private static final Logger logger = LoggerFactory.getLogger(HistoryEngine.class);
 
     public static HistoryView GenerateHistoryView(Game game, int turnCount) {
         HistoryView out = new HistoryView();
@@ -24,7 +29,7 @@ public class HistoryEngine {
             try {
                 GameEngine.ApplyMoveToGame(outGame, game.getMoves()[i]);
             } catch (InvalidMoveException | InvalidPositionException ex) {
-                System.out.println("This should be not possible..."+ex);
+                logger.warn("his should be not possible... we're reapplying an old move {}", ex);
             }
         }
 

@@ -156,8 +156,6 @@ public class ChessEngine {
                 // So... pawns are intersting. you can't take the piece in front of you. we need to check that manually
                 if (piece.color == Color.BLACK) {
 
-                    // Can I take diag?
-
                     try {
                         Position left = new Position(p.x - 1, p.y - 1);
                         if (!board.IsEmpty(left) && board.Get(left).color == Color.WHITE) {
@@ -216,7 +214,6 @@ public class ChessEngine {
         }
 
         return filterValidSpots(board, p, possibleMoves);
-
     }
 
     private static ArrayList<Position> filterValidSpots(Board board, Position start, ArrayList<Position> attempts) 
@@ -224,7 +221,6 @@ public class ChessEngine {
         Piece piece = board.Get(start);
         ArrayList<Position> out = new ArrayList<Position>();
 
-        
         for (Position p : attempts) {
             if (board.Get(p) == null || board.Get(p).color != piece.color) {
                 out.add(p);

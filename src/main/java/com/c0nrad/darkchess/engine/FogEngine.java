@@ -1,8 +1,6 @@
 package com.c0nrad.darkchess.engine;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import com.c0nrad.darkchess.exceptions.InvalidPositionException;
 import com.c0nrad.darkchess.models.Board;
@@ -13,7 +11,13 @@ import com.c0nrad.darkchess.models.Piece;
 import com.c0nrad.darkchess.models.PieceType;
 import com.c0nrad.darkchess.models.Position;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class FogEngine {
+
+    private static final Logger logger = LoggerFactory.getLogger(FogEngine.class);
+
     public static Board GenerateFogBoard(Board board, Color color) {
         Board fb = new Board(true);
 
@@ -24,7 +28,7 @@ public class FogEngine {
                 try {
                     p = new Position(x, y);
                 } catch(InvalidPositionException e) {
-                    System.err.println("[-] Something went very wrong..." + x + y);
+                    logger.error("this should be impossible {} {}",  x, y);
                     return fb;
                 }
 
@@ -174,7 +178,7 @@ public class FogEngine {
             possibleMoves = ChessEngine.GetPossibleMoves(board, p);
         } catch (InvalidPositionException ex) {
             board.Print();
-            System.err.println("[-] Something went very wrong..." + p);
+            logger.error("something went very wrong {}", ex);
             return null;    
         }
 

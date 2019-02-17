@@ -4,17 +4,12 @@ import java.util.List;
 
 import com.c0nrad.darkchess.exceptions.InvalidBoardException;
 import com.c0nrad.darkchess.exceptions.InvalidPieceException;
-import com.c0nrad.darkchess.exceptions.InvalidPositionException;
 import com.c0nrad.darkchess.models.Board;
 import com.c0nrad.darkchess.models.PlayerType;
 import com.c0nrad.darkchess.models.Story;
 
 import org.bson.types.ObjectId;
-
 import xyz.morphia.Datastore;
-import xyz.morphia.Morphia;
-import xyz.morphia.query.Query;
-import xyz.morphia.query.UpdateOperations;
 
 public class StoryDatastore {
     public static Story Find(String storyId) {

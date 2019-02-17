@@ -1,7 +1,6 @@
 package com.c0nrad.darkchess.server.forms;
 
 import com.c0nrad.darkchess.exceptions.FormValidationException;
-import com.c0nrad.darkchess.exceptions.InvalidPositionException;
 import com.c0nrad.darkchess.models.Move;
 import com.c0nrad.darkchess.models.Position;
 

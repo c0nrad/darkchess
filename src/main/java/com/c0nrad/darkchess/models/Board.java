@@ -8,7 +8,6 @@ import xyz.morphia.annotations.Embedded;
 import xyz.morphia.annotations.Entity;
 import xyz.morphia.annotations.Id;
 
-import com.c0nrad.darkchess.models.Position;
 import com.c0nrad.darkchess.exceptions.InvalidBoardException;
 import com.c0nrad.darkchess.exceptions.InvalidPieceException;
 import com.c0nrad.darkchess.exceptions.InvalidPositionException;

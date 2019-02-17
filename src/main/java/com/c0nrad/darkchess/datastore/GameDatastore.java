@@ -1,12 +1,10 @@
 package com.c0nrad.darkchess.datastore;
 
-
 import java.util.List;
 
 import com.c0nrad.darkchess.models.Game;
 
 import org.bson.types.ObjectId;
-
 import xyz.morphia.Datastore;
 
 public class GameDatastore {

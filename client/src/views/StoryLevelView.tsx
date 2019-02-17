@@ -120,8 +120,9 @@ export default class StoryLevelView extends Component<StoryLevelProps, StoryLeve
             return (<div>
                 <h2>You lost...</h2>
                 {/* <p>Review the game! <Link to={historyUrl}>Game Analysis</Link></p> */}
-                <p>Let's try that again: <button onClick={this.startStory.bind(this)}>Retry Level</button></p>
+                <p>Let's try that again: <button className="btn btn-primary" onClick={this.startStory.bind(this)}>Retry Level</button></p>
                 <h4>Review Game</h4>
+                <hr></hr>
                 <History gameId={this.state.gameId}></History>
             </div>);
         }
@@ -135,17 +136,18 @@ export default class StoryLevelView extends Component<StoryLevelProps, StoryLeve
                 return (<div>
                     <h2>You Win!!</h2>
                     {/* <p>Review the game! <Link to={historyUrl}>Game Analysis</Link></p> */}
-                    <p>Proceed to next level! <Link to={nextStoryLevel}>Next Level</Link></p>
+                    <p>Proceed to next level! <Link className="btn btn-primary" to={nextStoryLevel}>Next Level</Link></p>
                     <h4>Review Game</h4>
                     <History gameId={this.state.gameId}></History>
                 </div>);
             } 
-        } else if (this.state.isGameOver && (parseInt(this.props.match.params.level) == this.state.maxLevels)) {
+        } else if (this.state.isGameOver && (parseInt(this.props.match.params.level) == this.state.maxLevels) && this.state.gameId) {
             var historyUrl = `/history/${gameId}/0`
             return (<div>
                 <h3>Game Over!! You Beat the game!!</h3>
-                <p>Review the game! <Link to={historyUrl}>Game Analysis</Link></p>
-                <p>Send any feedback to c0nrad@c0nrad.io</p>
+                <p>Love it? Like it? Hate it? Let me know! c0nrad@c0nrad.io</p>
+
+                <History gameId={this.state.gameId}></History>
             </div>)
         }
 

@@ -7,7 +7,13 @@ import com.c0nrad.darkchess.models.Move;
 import com.c0nrad.darkchess.models.PlayerType;
 import com.c0nrad.darkchess.players.Player;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class BotManager {
+
+    private static final Logger logger = LoggerFactory.getLogger(BotManager.class);
+
     public static PlayerType[] AvailableBots = {
         PlayerType.RANDBOT, 
         PlayerType.PAWNPUSHERBOT, 
@@ -16,6 +22,7 @@ public class BotManager {
     public static Move MakeMove(PlayerType bot, Board b, Color c) throws InvalidBotException {
 
         if (!IsPlayable(bot)) {
+            logger.warn("requesting a non-existant bot {}", bot);
             throw new InvalidBotException("bot type " + bot + " is not supported");
         }
 

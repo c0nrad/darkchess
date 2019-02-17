@@ -14,8 +14,7 @@ ExceptionMapper<FormValidationException> {
     @Override
     public Response toResponse(FormValidationException exception)
     {
-        return Response.status(400).entity(exception.getMessage())
-                                    .type("text/plain").build();
+        return Response.status(400).entity(exception.getMessage()).type("text/plain").build();
     }
 
     
