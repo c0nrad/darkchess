@@ -7,7 +7,7 @@ class HomeView extends Component {
     return (
       <div>
       <h2> Darkchess <span style={{'fontSize':'20px'}}> Chess with Fog of War </span> </h2>
-      <p> Darkchess is a variation of chess where you can't see your opponents peices unless they are in your line of sight. </p>
+      <p> Darkchess is a variation of chess where you can't see your opponents pieces unless they are in your line of sight. </p>
 
       <div className="card">
         <h5 className="card-header">Story Mode</h5>
