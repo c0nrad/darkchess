@@ -1,6 +1,8 @@
 package com.c0nrad.darkchess.server;
 
+import org.eclipse.jetty.server.NCSARequestLog;
 import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.Slf4jRequestLog;
 import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -28,6 +30,10 @@ public class API
         ServletHolder staticHolder = new ServletHolder(new DefaultServlet());
         staticHolder.setInitParameter("resourceBase", "./client/build");
         ctx.addServlet(staticHolder, "/*");
+
+        Slf4jRequestLog requestLog = new Slf4jRequestLog();
+        requestLog.setLogLatency(true);
+        server.setRequestLog(requestLog);
             
         server.start();
         server.join();

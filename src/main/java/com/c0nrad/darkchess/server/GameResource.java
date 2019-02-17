@@ -24,7 +24,6 @@ import com.c0nrad.darkchess.exceptions.InvalidMoveException;
 import com.c0nrad.darkchess.exceptions.InvalidPositionException;
 import com.c0nrad.darkchess.models.Color;
 import com.c0nrad.darkchess.models.Game;
-import com.c0nrad.darkchess.models.Move;
 import com.c0nrad.darkchess.models.PlayerType;
 import com.c0nrad.darkchess.models.Position;
 import com.c0nrad.darkchess.server.forms.FogMap;
@@ -32,9 +31,13 @@ import com.c0nrad.darkchess.server.forms.MoveForm;
 import com.c0nrad.darkchess.server.forms.NewGameForm;
 
 import org.bson.types.ObjectId;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Path("/games")
 public class GameResource {
+
+  private static final Logger logger = LoggerFactory.getLogger(GameResource.class);
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
@@ -101,6 +104,7 @@ public class GameResource {
       try {
         GameEngine.ApplyBotMoveToGame(g);
       } catch (InvalidPositionException | InvalidMoveException | InvalidBotException ex) {
+        logger.error("error when applying bot move {}", ex);
         return Response.status(400).entity(ex.toString()).type("text/plain").build();
       }
     }
@@ -116,13 +120,13 @@ public class GameResource {
     Game g = GameDatastore.Find(gameId);
     ArrayList<Position> moves = new ArrayList<Position>();
 
-
     try {
-      // Can player see the moves?
       if (g.board.Get(new Position(x, y)) != null && g.board.Get(new Position(x, y)).color == Color.WHITE) {
         moves = ChessEngine.GetPossibleMoves(g.board, new Position(x, y));
       }
-    } catch (InvalidPositionException ex) {}
+    } catch (InvalidPositionException ex) {
+      logger.warn("error when generating possible moves {}, gameId {}, x {}, y {}", ex, gameId, x, y);
+    }
 
     return Response.status(200).entity(moves.toArray(new Position[0])).build();
   }

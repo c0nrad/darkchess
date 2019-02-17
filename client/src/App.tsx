@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import HistoryView from './views/HistoryView';
-import GameListView from './views/GameListView'
 import HomeView from './views/HomeView';
 import NewGameView from './views/NewGameView'
 import { BrowserRouter as Router, Route, Link, HashRouter, Switch } from "react-router-dom";
@@ -59,7 +58,6 @@ class App extends Component<AppProps, AppState> {
         <div id="body">
           <Switch>
             <Route path="/" exact component={HomeView} />
-            <Route path="/list/" component={GameListView} />
             <Route path="/history/:gameId/:turnCount" component={HistoryView} />
             <Route path="/play" exact component={NewGameView} />
             <Route path="/play/:gameId" component={PlayGameView} />

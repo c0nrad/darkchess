@@ -153,7 +153,7 @@ public class StoryDatastore {
         Board b5 = new Board(layout5);
 
         s5.startingboard = b5;
-        s5.blackPlayer = PlayerType.RANDBOT;
+        s5.blackPlayer = PlayerType.KILLBOT;
         d.save(s5);
 
     }
