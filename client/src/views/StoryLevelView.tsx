@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
-import Board from '../components/Board';
 import GameModel from '../models/GameModel';
-import Graveyard from '../components/Graveyard';
-import MoveList from '../components/MoveList';
-import PositionModel from '../models/PositionModel';
 import { Link } from 'react-router-dom';
 import BASE_URL from '../Config';
 import StoryModel from '../models/StoryModel';
 import Game from '../components/Game';
-import HistoryView from './HistoryView';
 import History from '../components/History';
 
 interface StoryLevelProps {
