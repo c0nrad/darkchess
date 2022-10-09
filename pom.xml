@@ -20,6 +20,7 @@
     <jetty-version>9.4.14.v20181114</jetty-version>
     <jersey-version>2.26</jersey-version>
 	<sonar.organization>oliveranicolas</sonar.organization>
+	<sonar.projectKey>oliveranicolas_darkchess</sonar.projectKey>
   	<sonar.host.url>https://sonarcloud.io</sonar.host.url>
   </properties>
 
