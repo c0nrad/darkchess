@@ -1,15 +1,16 @@
 version: 0.2
 
-phases:
+  build:
+    commands:
+      - make release
+      
+      phases:
   install:
     commands:
       - curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
       - sudo apt-get install -y nodejs
       - cd client; npm install; cd ..
-
-  build:
-    commands:
-      - make release
+      
 
 artifacts:
   files:
