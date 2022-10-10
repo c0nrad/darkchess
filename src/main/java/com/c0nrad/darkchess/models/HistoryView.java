@@ -3,10 +3,12 @@ package com.c0nrad.darkchess.models;
 import org.bson.types.ObjectId;
 
 public class HistoryView {
+    public ObjectId gameId;
+    
     public int turnCount;
     public int maxTurnCount;
 
-    public ObjectId gameId;
+
 
     public Board board;
     public Board fogBoardWhite;
